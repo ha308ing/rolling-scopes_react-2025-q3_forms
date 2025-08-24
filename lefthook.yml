@@ -1,0 +1,14 @@
+pre-commit:
+  piped: true
+  jobs:
+    - name: formatting
+      run: npx prettier -u --check {staged_files}
+
+    - name: linting
+      glob: "*.{js,ts,jsx,tsx}"
+      run: npx eslint {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}
